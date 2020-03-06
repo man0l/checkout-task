@@ -1,0 +1,13 @@
+App\Entity\Product:
+  product_1:
+    name: A
+    price: 50
+  product_2:
+    name: B
+    price: 30
+  product_3:
+    name: C
+    price: 20
+  product_4:
+    name: D
+    price: 10

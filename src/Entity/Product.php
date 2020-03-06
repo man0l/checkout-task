@@ -26,6 +26,11 @@ class Product
      */
     private $price;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Promotion", mappedBy="product", cascade={"persist", "remove"})
+     */
+    private $promotion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,23 @@ class Product
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getPromotion(): ?Promotion
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(Promotion $promotion): self
+    {
+        $this->promotion = $promotion;
+
+        // set the owning side of the relation if necessary
+        if ($promotion->getProduct() !== $this) {
+            $promotion->setProduct($this);
+        }
 
         return $this;
     }
