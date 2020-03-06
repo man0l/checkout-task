@@ -1,0 +1,13 @@
+App\Entity\Promotions:
+  promotion_1:
+    product:
+      owner: '@product_1'
+    price: 43.3
+    quantity: 3
+    total_price: 130
+  promotion_2:
+    product:
+      owner: '@product_2'
+    price: 22.5
+    quantity: 2
+    total_price: 45
