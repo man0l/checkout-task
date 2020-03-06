@@ -1,4 +1,4 @@
-App\Entity\Promotions:
+App\Entity\Promotion:
   promotion_1:
     product:
       owner: '@product_1'
