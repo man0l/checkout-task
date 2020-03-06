@@ -28,7 +28,7 @@ class Promotion
     private $quantity;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $price;
 
