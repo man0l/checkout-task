@@ -26,9 +26,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: checkout
-    volumes:
-      - data-volume:/var/lib/mysql
     ports:
       - "3306:3306"
-volumes:
-  data-volume:
