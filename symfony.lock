@@ -14,6 +14,25 @@
     "doctrine/lexer": {
         "version": "1.2.0"
     },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
+    },
+    "myclabs/deep-copy": {
+        "version": "1.9.5"
+    },
+    "nelmio/alice": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.2",
+            "ref": "0b9900ece737bec7752e4155c0164639dd9b0cb0"
+        },
+        "files": [
+            "./config/packages/dev/nelmio_alice.yaml",
+            "./config/packages/test/nelmio_alice.yaml"
+        ]
+    },
     "php": {
         "version": "7.2"
     },
@@ -28,6 +47,18 @@
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "sebastian/comparator": {
+        "version": "3.0.2"
+    },
+    "sebastian/diff": {
+        "version": "3.0.2"
+    },
+    "sebastian/exporter": {
+        "version": "3.1.2"
+    },
+    "sebastian/recursion-context": {
+        "version": "3.0.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -122,6 +153,9 @@
     "symfony/http-kernel": {
         "version": "v5.0.5"
     },
+    "symfony/inflector": {
+        "version": "v5.0.5"
+    },
     "symfony/mime": {
         "version": "v5.0.5"
     },
@@ -133,6 +167,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.14.0"
+    },
+    "symfony/property-access": {
+        "version": "v5.0.5"
     },
     "symfony/routing": {
         "version": "4.2",
