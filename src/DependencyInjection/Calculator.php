@@ -14,7 +14,7 @@ class Calculator
         $this->repository = $repository;
     }
 
-    function calculate(\string $products)
+    function calculate(string $products)
     {
         $productArray = $this->convertArray($products);
         $entities = $this->repository->findBy(['name' => $productArray]);
@@ -23,13 +23,23 @@ class Calculator
         /** @var Product $product */
         foreach($entities as $product) {
             if(!$product->getPromotion()) {
+                $price = $occurence[$product->getName()] * $product->getPrice();
+                $totalPrice += $price;
                 continue;
             }
+            $price = 0;
+            // calc how many promotions consist the product array
+            $promotionsNum = floor($occurence[$product->getName()] / $product->getPromotion()->getQuantity());
 
-            $price = $occurence[$product->getName()] * $product->getPrice();
-            if($occurence[$product->getName()] >= $product->getPromotion()->getQuantity()) {
-                $price -= $product->getPromotion()->getQuantity() * $product->getPrice();
-                $price += $product->getPromotion()->getQuantity() * $product->getPromotion()->getPrice();
+            if($promotionsNum > 0) {
+                for ($i = 0; $i < $promotionsNum; $i++) {
+                    $price += $product->getPromotion()->getTotalPrice();
+                    $occurence[$product->getName()] -= $product->getPromotion()->getQuantity();
+                }
+            }
+
+            if($occurence[$product->getName()] > 0) {
+                $price += $occurence[$product->getName()] * $product->getPrice();
             }
 
             $totalPrice += $price;
@@ -38,17 +48,22 @@ class Calculator
         return $totalPrice;
     }
 
-    private function findOccurence(\string $products) {
+    private function findOccurence(string $products) {
         $occurence = [];
         $len = strlen($products);
         for($i = 0; $i < $len; $i++) {
-            $occurence[$products[$i]] += 1;
+            if(isset($occurence[$products[$i]])) {
+                $occurence[$products[$i]] += 1;
+            } else {
+                $occurence[$products[$i]] = 1;
+            }
+
         }
 
         return $occurence;
     }
 
-    private function convertArray(\string $products) {
+    private function convertArray(string $products) {
         $productArray = [];
         $len = strlen($products);
         for($i = 0; $i < $len; $i++) {
