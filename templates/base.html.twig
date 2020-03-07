@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    <header><h1>Checkout calculator</h1></header>
+    <div class="row">
+        <div class="col-md-12">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <footer>Checkout 2020</footer>
+</div>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
