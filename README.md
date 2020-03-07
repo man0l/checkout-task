@@ -7,3 +7,5 @@
 5) navigate to `localhost:8080` to see the home page
 6) run tests `docker exec php php bin/phpunit`
 7) calculate with console command `docker exec php bin/console app:calculate AAABC`
+8) navigate to `http://localhost:8080/product/` to see product CRUD 
+8) navigate to `http://localhost:8080/promotion/` to see promotions CRUD 
