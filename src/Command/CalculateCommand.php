@@ -34,16 +34,15 @@ class CalculateCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->setDescription('Calculate the product total')
+            ->addArgument('products', InputArgument::OPTIONAL, 'Products')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
-        $arg1 = $input->getArgument('arg1');
+        $io = new SymfonyStyle($input, $output);
+        $arg1 = $input->getArgument('products');
 
         $productNames = $this->calculator->convertArray($arg1);
         $occurrence   = $this->calculator->findOccurrence($arg1);
@@ -84,6 +83,7 @@ class CalculateCommand extends Command
         $this->em->persist($order);
         $this->em->flush();
 
+        $io->success('The order has been written in the database successfully');
         return 0;
     }
 }
