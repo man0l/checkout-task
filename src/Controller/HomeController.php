@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Form\ConfirmType;
 use App\Service\Calculator;
-use App\Entity\Product;
 use App\Form\OrderType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Order;
 use App\Repository\ProductRepository;
+use Symfony\Component\Routing\Route;
 
 class HomeController extends AbstractController
 {
@@ -36,7 +37,7 @@ class HomeController extends AbstractController
      * @param Request $request
      * @Route("/receipt/{products}", name="receipt_products")
      */
-    public function receipt($products, Calculator $calculator, ProductRepository $repository, Request $request) {
+    public function receipt($products, Calculator $calculator, ProductRepository $repository, Request $request, EntityManagerInterface $entityManager) {
 
         $productArray = $calculator->convertArray($products);
         $entities     = $repository->findBy(['name' => $productArray]);
@@ -56,7 +57,10 @@ class HomeController extends AbstractController
 
             $order->setTotal($discountedTotal);
 
+            $entityManager->persist($order);
+            $entityManager->flush();
 
+            return $this->redirectToRoute('thank_you');
         }
 
         return $this->render('home/receipt.html.twig', [
@@ -66,5 +70,12 @@ class HomeController extends AbstractController
             'form' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("/thankyou", name="thank_you")
+     */
+    public function thankyou() {
+        return $this->render('home/thankyou.html.twig');
     }
 }
