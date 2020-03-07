@@ -1,7 +1,7 @@
-body {
-    min-height: 1024px;
+.calc-content {
+    min-height: 768px;
 }
 
 header {
-    height: 200px;
+    height: 100px;
 }
