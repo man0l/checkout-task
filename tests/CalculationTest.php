@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\DependencyInjection\Calculator;
+use App\Service\Calculator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CalculationTest extends WebTestCase
