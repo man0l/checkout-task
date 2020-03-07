@@ -6,3 +6,4 @@
 4) load fixtures: `docker exec php php bin/console hautelook:fixtures:load --no-interaction`
 5) navigate to `localhost:8080` to see the home page
 6) run tests `docker exec php php bin/phpunit`
+7) calculate with console command `docker exec php bin/console app:calculate AAABC`
