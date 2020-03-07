@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total_price</th>
@@ -19,6 +20,7 @@
         {% for promotion in promotions %}
             <tr>
                 <td>{{ promotion.id }}</td>
+                <td>{{ promotion.product.name }}</td>
                 <td>{{ promotion.quantity }}</td>
                 <td>{{ promotion.price }}</td>
                 <td>{{ promotion.totalPrice }}</td>
