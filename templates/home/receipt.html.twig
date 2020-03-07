@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="products">
+        <h1>Order Receipt</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set total = 0 %}
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    {% set price = product.price * occurence[product.name] %}
+                    {%  set total = total + price %}
+                    <td>{{  price }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2">Total {{ total }}</td>
+                {% if total != discounted_total %}
+                <td colspan="2">Discounted Total <strong>{{ discounted_total }}</strong></td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="actions mt-5">
+        {{  form_start(form) }}
+            {{ form_widget(form.products, {value: app.request.get('products')}) }}
+            {{ form_widget(form.save, {label: 'Checkout'}) }}
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
