@@ -8,12 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class CalculationTest extends WebTestCase
 {
     private $calculator;
+    private $repository;
 
     function setUp() {
         self::bootKernel();
 
+        $this->repository = self::$container->get('App\Repository\ProductRepository');
+
         /** @var Calculator calculator */
-        $this->calculator = self::$container->get('App\DependencyInjection\Calculator');
+        $this->calculator = new Calculator($this->repository);
     }
 
     /**
@@ -25,7 +28,7 @@ class CalculationTest extends WebTestCase
         self::assertEquals($totalPrice, $result);
     }
 
-    private function getInputData() {
+    public function getInputData() {
         return [
             [50, "A"],
             [80, "AB"],
