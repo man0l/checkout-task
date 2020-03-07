@@ -36,14 +36,9 @@ class Product
      */
     private $promotion;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="product", orphanRemoval=true)
-     */
-    private $orders;
-
     public function __construct()
     {
-        $this->orders = new ArrayCollection();
+
     }
 
     public function getId(): ?int
